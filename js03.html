@@ -1,0 +1,16 @@
+<script>
+  // 원시 vs 참조
+  // 원시
+  // 값 자체를 복사한다
+  var num = 1;
+  var num1 = num;
+  num1 = 2;
+  console.log(num);
+
+  // 참조
+  // 저장된 주소를 복사한다
+  var array = [0, 0, 0, 0];
+  var array1 = array; // 얕은복사
+  array1[0] = 1;
+  console.log(array);
+</script>
