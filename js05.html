@@ -1,0 +1,18 @@
+<script>
+  function program() {
+    let result = false;
+    const correct = Math.floor(Math.random() * 1000);
+    // 975
+    const answer = prompt(`${correct}를 입력해 주세요.`);
+    // "975"
+    result = correct == answer;
+
+    if (result) {
+      alert("정답입니다.");
+    } else {
+      alert("오답입니다.");
+    }
+  }
+
+  program();
+</script>
