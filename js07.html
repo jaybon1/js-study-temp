@@ -48,6 +48,32 @@
   console.log(`${arr} push("g") : ${arr.push("g")}`);
   console.log(arr);
   console.log(`${arr} join("") : ${arr.join(" ")}`);
+  console.log(`${arr} reverse() : ${arr.reverse()}`);
+
+  // forEach, filter, map, reduce, every, find, some
+  // forEach -> 반복작업
+  const callbackFn = (value) => {
+    console.log(value);
+  };
+
+  arr.forEach(callbackFn);
+  arr.forEach((value) => console.log(value));
+
+  // filter -> 조건 필터링해서 배열 반환
+  const predicate1 = (value) => {
+    return value.charCodeAt(0) > 97;
+  };
+
+  console.log(arr.filter(predicate1));
+  console.log(arr.filter((value) => value == "g"));
+
+  // map -> 배열의 요소를 변환
+  console.log(arr.map((value) => value));
+
+  // reduce -> 요소 합치기
+  // every -> 모든 요소가 조건에 부합하는지
+  // some -> 하나의 요소라도 조건에 부합하는지
+  // find -> 조건에 부합하는 요소 찾기
 
   // obj
   // Math
