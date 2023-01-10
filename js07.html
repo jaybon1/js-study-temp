@@ -72,10 +72,53 @@
 
   // reduce -> 요소 합치기
   // every -> 모든 요소가 조건에 부합하는지
+
+  //   if (prompt("아이디를 입력하세요")) {
+  //     console.log("조건성공");
+  //   } else {
+  //     alert("아이디를 입력하세요.");
+  //   }
+
   // some -> 하나의 요소라도 조건에 부합하는지
   // find -> 조건에 부합하는 요소 찾기
 
   // obj
+  const obj = {
+    key: "value",
+    func(value) {
+      return value;
+    },
+    array: [1, 2, 3, 4],
+    obj: {
+      key: "value1",
+    },
+  };
+  console.log(obj.key);
+  console.log(obj.obj.key);
+  console.log(obj.func());
+
   // Math
+  console.log(Math.PI);
+  console.log(`Math.abs(-1) : ${Math.abs(-1)}`);
+  console.log(`Math.ceil(1.2) : ${Math.ceil(1.2)}`);
+  console.log(`Math.floor(1.5) : ${Math.floor(1.5)}`);
+  console.log(`Math.round(1.2) : ${Math.round(1.2)}`);
+  console.log(`Math.round(1.5) : ${Math.round(1.5)}`);
+  console.log(`Math.pow(2, 3) : ${Math.pow(2, 3)}`);
+  const arr1 = [1, 2, 3];
+  console.log(`Math.max(...arr1) : ${Math.max(...arr1)}`);
+  console.log(`Math.min(...arr1) : ${Math.min(...arr1)}`);
+  console.log(`Math.random() : ${Math.floor(Math.random() * 45)}`);
+
   // Date
+  // 1970년 1월 1일 12시 정각부터 ms 단위로 숫자를 리턴
+  console.log(`Date.now() : ${Date.now()}`);
+  const myDate = new Date("2023-01-07T15:00:00.000Z");
+  console.log(`myDate : ${myDate}`);
+  console.log(`myDate.getFullYear() : ${myDate.getFullYear()}`);
+  console.log(`myDate.getDate() : ${myDate.getDate()}`);
+
+  console.log(`myDate.getMonth() : ${myDate.getMonth()}`);
+  console.log(`myDate.getDay() : ${myDate.getDay()}`);
+  console.log(`myDate.toJSON() : ${myDate.toJSON()}`);
 </script>
