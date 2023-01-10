@@ -1,0 +1,18 @@
+<script>
+  const array = [1, 2];
+  //   const 함수명 = (매개변수자리) => 결과값;
+
+  // 배열 클래스가 가진 메소드
+  // 반복해라
+  const work = (value) => console.log(value);
+  array.forEach(work);
+  // 필터링해라 (안의 함수기준으로)
+
+  const fil = (value) => value % 2 == 1;
+  console.log(array.filter(fil));
+
+  // 변화시켜라
+
+  const mapping = (value) => value ** 2;
+  console.log(array.map(mapping));
+</script>
