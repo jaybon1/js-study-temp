@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>시계</h1>
+    <div>
+      <span id="hour"></span>
+      <span id="minute"></span>
+      <span id="second"></span>
+    </div>
+  </body>
+  <script>
+    const getClock = () => {
+      const myDate = new Date();
+      // window dom bom
+      const hour = document.getElementById("hour");
+      hour.innerText = myDate.getHours() + "시";
+      const minute = document.getElementById("minute");
+      minute.innerText = myDate.getMinutes() + "분";
+      const second = document.getElementById("second");
+      second.innerText = myDate.getSeconds().toString().padStart(2, "0") + "초";
+    };
+
+    setInterval(getClock, 1000);
+  </script>
+</html>
