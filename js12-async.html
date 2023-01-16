@@ -1,0 +1,47 @@
+<script>
+  // async await
+  // 1. async 없는 함수에서 promise
+  const noAsyncFunc = () => {
+    const pro1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("pro1 완료");
+      }, 2000);
+    });
+    const pro2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("pro2 완료");
+      }, 1000);
+    });
+    // then 안의 함수를 콜백 함수라고 한다.
+    pro1.then((response) => {
+      console.log(response);
+    });
+    pro2.then((response) => {
+      console.log(response);
+    });
+  };
+  //   noAsyncFunc();
+
+  // 2. async 있는 함수에서 promise
+  const asyncFunc = async () => {
+    const pro1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("pro1 완료");
+      }, 2000);
+    });
+    const pro2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("pro2 완료");
+      }, 1000);
+    });
+
+    // await 사용시
+    // promise 결과는 순서대로 작동된다.
+    const res1 = await pro1; // 2초 뒤에 풀림
+    console.log(res1);
+    const res2 = await pro2; // 이미 풀려있음
+    console.log(res2);
+  };
+  // async 함수는 promise를 리턴한다
+  asyncFunc();
+</script>
