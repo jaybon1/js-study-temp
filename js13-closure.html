@@ -1,0 +1,40 @@
+<script>
+  // 클로저 closure
+  // var, let, const
+  // -> 스코프가 함수를 넘지 못한다
+  // 함수를 객체처럼 사용할 때 클로저 이용
+
+  //   class Count {
+  //     constructor() {
+  //       this.count = 0;
+  //     }
+  //     increase() {
+  //       // this.count++;
+  //       this.count = this.count + 1;
+  //       return this.count;
+  //     }
+  //   }
+  //   const count = new Count();
+  //   console.log(count.increase());
+  //   console.log(count.increase());
+  //   console.log(count.increase());
+
+  // -----------------------------------
+
+  const makeCounter = () => {
+    // 원래 함수가 끝나면 없어져야되는 count
+    let count = 0;
+    return () => {
+      // 함수를 리턴하면 부모 함수의 변수를
+      // 가지고 있을 경우
+      // 부모 함수의 변수가 어딘가에 살아남는다
+      count = count + 1;
+      return count;
+    };
+  };
+
+  const counter = makeCounter();
+  console.log(counter());
+  console.log(counter());
+  console.log(counter());
+</script>
