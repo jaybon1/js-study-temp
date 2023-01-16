@@ -1,0 +1,65 @@
+<script>
+  // break, continue
+  // while, for 안에서 break가 선언되면 반복문이 종료된다.
+  // array.some -> 예를들어 100개의 요소 중에서 하나라도
+  // 조건에 맞으면 멈추는게 효율적이다.
+  // 만약에 2번째에서 조건이 맞으면 break
+  const breakFunc = () => {
+    let count = 0;
+    while (count < 100) {
+      console.log(`${count} break테스트`);
+      if (count > 10) {
+        break;
+      }
+      count = count + 1;
+    }
+    console.log(`break빠져나옴`);
+  };
+  //   breakFunc();
+
+  // while, for문에서 continue를 선언하면
+  // 다음 반복으로 넘어간다
+  // array.filter -> 원래 있던 배열에서 필터링할때
+  // [1,2,3] 에서 [] 빈배열로 push 할때
+  // 조건이 홀수인 것만 필터링,
+  // 짝수일 경우 continue, 홀수일 경우 push
+  const continueFunc = () => {
+    let count = 0;
+    while (count < 100) {
+      count = count + 1;
+      if (count == 98) {
+        continue;
+      }
+      console.log(`${count} continue테스트`);
+    }
+    console.log(`continue빠져나옴`);
+  };
+  continueFunc();
+
+  // return
+  // 함수안에서 return이 선언되면 함수가 종료된다.
+  // 계산이 완료되서 더 이상 함수 내의 코드를 실행할 필요가 없을 때
+  // 매개변수가 "" 빈 스트링이면 0을 리턴하고
+  // "가나다" 빈 스트링이 아니면 ["가","나","다"]로 만들어주세요
+  const strFunc = (str) => {
+    if (str.length == 0) {
+      return 0;
+    }
+    return str.split("");
+  };
+  console.log(strFunc(""));
+  console.log(strFunc("가나다"));
+
+  const returnFunc = () => {
+    let count = 0;
+    while (count < 100) {
+      console.log(`${count} return테스트`);
+      if (count > 10) {
+        return;
+      }
+      count = count + 1;
+    }
+    console.log(`return 빠져나옴`);
+  };
+  //   returnFunc();
+</script>
