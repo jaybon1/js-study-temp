@@ -69,16 +69,41 @@
         // imgArray.filter((value) => value.complete).length;
 
         // TODO 공격
-        // TODO 두더지 생성
-        // TODO 화면 그리기
+        // 두더지 생성
+        this.moleInterval = setInterval(() => {
+          // 2마리 카운트
+          // 랜덤 위치 정해주기
+          // 생성해서 배열에 넣기
+          // 9마리가 꽉 차면 생성하지 않기
+          let count = this.genMole;
+          while (count > 0) {
+            if (this.moleArray.some((mole) => mole == null)) {
+              const tempIndex = Math.floor(Math.random() * 9);
+              if (this.moleArray[tempIndex] == null) {
+                this.moleArray[tempIndex] = new Mole(
+                  this,
+                  tempIndex,
+                  (tempIndex % 3) * 107 + 20,
+                  Math.floor(tempIndex / 3) * 143 + 200
+                );
+                count = count - 1;
+              }
+            } else {
+              break;
+            }
+          }
+        }, 1000 / this.gameLevel);
+
+        // 화면 그리기
         this.render();
       }
 
       render() {
         this.renderInterval = setInterval(() => {
-          // TODO 화면 클리어
+          // 화면 클리어
           this.ctx.clearRect(0, 0, this.gameWidth, this.gameHeight);
-          // TODO 배경그리기
+
+          // 배경그리기
           this.ctx.drawImage(
             this.bgImage,
             0,
@@ -86,8 +111,17 @@
             this.gameWidth,
             this.gameHeight
           );
+
           // TODO 두더지 그리기
-          // TODO 점수 / 실패
+          this.moleArray.forEach();
+          // this.ctx.drawImage(this.moleImage, 20, 200, 85, 96);
+          // x 축은 107 간격
+          // y 축은 143 간격
+
+          // 점수 / 실패
+          this.ctx.font = "30px Arial";
+          this.ctx.fillText(`score: ${this.score}`, 20, 30);
+          this.ctx.fillText(`fail: ${this.fail}`, 160, 30);
         }, 100);
       }
 
