@@ -19,9 +19,11 @@
         this.attacked = false;
 
         setTimeout(() => {
-          // TODO 두더지 사라짐
+          // 두더지 사라짐
+          game.moleArray[this.idx] = null;
           if (!this.attacked) {
-            // TODO fail점수 상승
+            // fail점수 상승
+            game.fail++;
           }
         }, 1500);
       }
@@ -68,7 +70,26 @@
         // imgArray.length;
         // imgArray.filter((value) => value.complete).length;
 
-        // TODO 공격
+        // 공격
+        this.canvas.onmousedown = (event) => {
+          this.moleArray.forEach((mole) => {
+            // mole이 null이 아니고
+            // 공격당한 mole이 아니고
+            // mole 이미지가 있는 범위 안
+            if (
+              mole != null &&
+              !mole.attacked &&
+              event.clientX > mole.x &&
+              event.clientX < mole.x + 85 &&
+              event.clientY > mole.y &&
+              event.clientY < mole.y + 96
+            ) {
+              mole.attacked = true;
+              this.score++;
+            }
+          });
+        };
+
         // 두더지 생성
         this.moleInterval = setInterval(() => {
           // 2마리 카운트
@@ -100,6 +121,10 @@
 
       render() {
         this.renderInterval = setInterval(() => {
+          // 게임 종료 조건
+          if (this.fail > this.genMole * 2.5) {
+            this.over();
+          }
           // 화면 클리어
           this.ctx.clearRect(0, 0, this.gameWidth, this.gameHeight);
 
@@ -112,10 +137,13 @@
             this.gameHeight
           );
 
-          // TODO 두더지 그리기
+          // 두더지 그리기
           this.moleArray.forEach((mole) => {
             if (mole == null) return;
             this.ctx.drawImage(this.moleImage, mole.x, mole.y, 85, 96);
+            if (mole.attacked) {
+              this.ctx.drawImage(this.boomImage, mole.x, mole.y, 85, 96);
+            }
           });
 
           // 점수 / 실패
@@ -126,9 +154,14 @@
       }
 
       over() {
-        // TODO interval 멈추기
+        // interval 멈추기
+        clearInterval(this.moleInterval);
+        clearInterval(this.renderInterval);
+        alert("게임오버");
       }
     }
+
+    alert("게임시작");
 
     new MoleGame(document.getElementById("moleGame"));
   </script>
