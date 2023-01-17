@@ -113,10 +113,10 @@
           );
 
           // TODO 두더지 그리기
-          this.moleArray.forEach();
-          // this.ctx.drawImage(this.moleImage, 20, 200, 85, 96);
-          // x 축은 107 간격
-          // y 축은 143 간격
+          this.moleArray.forEach((mole) => {
+            if (mole == null) return;
+            this.ctx.drawImage(this.moleImage, mole.x, mole.y, 85, 96);
+          });
 
           // 점수 / 실패
           this.ctx.font = "30px Arial";
