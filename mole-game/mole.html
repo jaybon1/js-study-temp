@@ -6,5 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <canvas id="moleGame"></canvas>
+  </body>
+  <script>
+    // 두더지
+    class Mole {
+      constructor(game, index, x, y) {
+        this.idx = index;
+        this.x = x;
+        this.y = y;
+        this.attacked = false;
+
+        setTimeout(() => {
+          // TODO 두더지 사라짐
+          if (!this.attacked) {
+            // TODO fail점수 상승
+          }
+        }, 1500);
+      }
+    }
+
+    // 두더지 게임
+    class MoleGame {
+      constructor(canvas) {
+        // 게임 설정 데이터
+        this.gameWidth = 350;
+        this.gameHeight = 700;
+        this.gameLevel = 1;
+        this.genMole = 2;
+        this.moleArray = new Array(9).fill(null);
+        this.score = 0;
+        this.fail = 0;
+        this.moleInterval = null;
+        this.renderInterval = null;
+
+        // 캔버스
+        /** @type {HTMLCanvasElement} */
+        this.canvas = canvas;
+        this.canvas.width = this.gameWidth;
+        this.canvas.height = this.gameHeight;
+
+        // 컨텍스트
+        /** @type {CanvasRenderingContext2D} */
+        this.ctx = this.canvas.getContext("2d");
+
+        // 배경 이미지
+        this.bgImage = new Image();
+        this.bgImage.src = "./asset/img/bg.jpg";
+
+        // 두더지 이미지
+        this.moleImage = new Image();
+        this.moleImage.src = "./asset/img/mole_r.png";
+
+        // 공격 이펙트 이미지
+        this.boomImage = new Image();
+        this.boomImage.src = "./asset/img/boom.png";
+      }
+
+      render() {}
+
+      over() {}
+    }
+  </script>
 </html>
