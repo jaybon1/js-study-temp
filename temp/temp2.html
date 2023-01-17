@@ -1,5 +1,8 @@
 <script>
-  // const solution = (strlist) => strlist.map((str) => str.split("").length);
-  // console.log(solution(["We", "are", "the", "world!"]));
-  // console.log(Math.sqrt(2));
+  const func = async () => {
+    new Promise((rv, rj) => {
+      rj("에러");
+    }).catch((e) => {});
+  };
+  func();
 </script>
