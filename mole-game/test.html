@@ -38,5 +38,11 @@
     context.font = "30px Arial";
     context.fillStyle = "black";
     context.fillText("안녕하세요", 300, 50);
+
+    const image = new Image();
+    image.src = "./asset/img/mole.png";
+    image.onload = () => {
+      context.drawImage(image, 100, 100, 100, 100);
+    };
   </script>
 </html>
