@@ -1,8 +1,7 @@
 <script>
-  const func = async () => {
-    new Promise((rv, rj) => {
-      rj("에러");
-    }).catch((e) => {});
+  const img = new Image();
+  img.src = "../mole-game/asset/img/boom.png";
+  img.onload = () => {
+    console.log(img.complete);
   };
-  func();
 </script>
