@@ -1,0 +1,18 @@
+<script>
+  const family = {
+    aunt: ["'c'", "'s'"],
+  };
+
+  // 객체를 문자로 만드는 것 JSON
+  // 통신데이터는 모두 문자열이다.
+  // json의 필드가 될 수 있는 것
+  // 1. 문자
+  // 2. 숫자
+  // 3. boolean
+  // 4. 객체? {}
+  // 5. 배열? []
+  const jsonFamily = JSON.stringify(family);
+  console.log(jsonFamily);
+  const family1 = JSON.parse(jsonFamily);
+  console.log(family1);
+</script>
