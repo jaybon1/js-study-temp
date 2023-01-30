@@ -35,5 +35,22 @@
     const messageInput = document.getElementById("messageInput");
     const cancelBtn = document.getElementById("cancelBtn");
     const sendBtn = document.getElementById("sendBtn");
+
+    window.onmessage = (event) => {
+      alert(event.data);
+    };
+
+    cancelBtn.onclick = () => {
+      window.close();
+    };
+
+    sendBtn.onclick = () => {
+      if (messageInput.value == "") {
+        alert("메시지를 입력하세요");
+        return;
+      }
+      window.opener.postMessage(messageInput.value, "*");
+      window.close();
+    };
   </script>
 </html>

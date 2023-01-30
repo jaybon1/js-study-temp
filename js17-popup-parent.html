@@ -33,13 +33,22 @@
     const message = document.getElementById("message");
     const popupBtn = document.getElementById("popupBtn");
     const popupMessageBtn = document.getElementById("popupMessageBtn");
+    let popup = null;
+
+    popupMessageBtn.onclick = () => {
+      popup.postMessage("안녕", "*");
+    };
 
     popupBtn.addEventListener("click", () => {
-      const popup = window.open(
+      popup = window.open(
         "js17-popup-child.html",
         "popup",
         "width=500, height=400"
       );
     });
+
+    window.onmessage = (event) => {
+      message.innerText = event.data;
+    };
   </script>
 </html>
