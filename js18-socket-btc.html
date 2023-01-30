@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>Bybit Crypto Price</h1>
+      <div class="row mt-3">
+        <div class="col">
+          <div class="card">
+            <div class="card-body d-flex">
+              <div class="icon me-3">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 60 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="30" cy="30" r="30" fill="white"></circle>
+                  <path
+                    d="M30 0C13.4312 0 0 13.4312 0 30C0 46.5688 13.4312 60 30 60C46.5688 60 60 46.5688 60 30C60 13.4312 46.5688 0 30 0ZM30 54.375C16.5588 54.375 5.625 43.44 5.625 30C5.625 16.56 16.5588 5.625 30 5.625C43.4412 5.625 54.375 16.5588 54.375 30C54.375 43.4412 43.44 54.375 30 54.375Z"
+                    fill="#F7931A"
+                  ></path>
+                  <path
+                    d="M31.5488 30.9737H27.61V36.825H31.5488C32.3438 36.825 33.0813 36.5025 33.5988 35.9612C34.14 35.4425 34.4625 34.7062 34.4625 33.8875C34.4638 32.2862 33.15 30.9737 31.5488 30.9737Z"
+                    fill="#F7931A"
+                  ></path>
+                  <path
+                    d="M30 8.12496C17.9375 8.12496 8.125 17.9375 8.125 30C8.125 42.0625 17.9375 51.875 30 51.875C42.0625 51.875 51.875 42.0612 51.875 30C51.875 17.9387 42.0612 8.12496 30 8.12496ZM34.4512 40.13H31.8712V44.185H29.165V40.13H27.6787V44.185H24.96V40.13H20.18V37.585H22.8175V22.335H20.18V19.79H24.96V15.8162H27.6787V19.79H29.165V15.8162H31.8712V19.79H34.2212C35.5337 19.79 36.7437 20.3312 37.6075 21.195C38.4712 22.0587 39.0125 23.2687 39.0125 24.5812C39.0125 27.15 36.985 29.2462 34.4512 29.3612C37.4225 29.3612 39.8187 31.78 39.8187 34.7512C39.8187 37.7112 37.4237 40.13 34.4512 40.13Z"
+                    fill="#F7931A"
+                  ></path>
+                  <path
+                    d="M33.2888 27.38C33.7613 26.9075 34.0488 26.2737 34.0488 25.56C34.0488 24.1437 32.8975 22.9912 31.48 22.9912H27.61V28.14H31.48C32.1825 28.14 32.8275 27.84 33.2888 27.38Z"
+                    fill="#F7931A"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <p class="mb-0 invoice-num1">BTC-USDT</p>
+                <h2 id="usdtPrice" class="invoice-num">$ 0</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <div class="card">
+            <div class="card-header border-0 pb-0">
+              <h4 class="text-black fs-20">Trades</h4>
+            </div>
+            <div class="card-body pb-0 pt-3">
+              <div class="table-responsive">
+                <table
+                  class="table text-center bg-primary-hover tr-rounded order-tbl"
+                >
+                  <thead>
+                    <tr>
+                      <th class="text-left">Price</th>
+                      <th class="text-center">Amount</th>
+                      <th class="text-right">Order</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tradeTbody">
+                    <!-- <tr>
+                      <td class="text-left">12333</td>
+                      <td>0.10</td>
+                      <td class="text-right">Buy</td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 태그 가져오기
+    const usdtPrice = document.getElementById("usdtPrice");
+    const tradeTbody = document.getElementById("tradeTbody");
+
+    // 소켓 객체 생성하기
+    const bybitSocket = new WebSocket(
+      "wss://stream.bybit.com/contract/usdt/public/v3"
+    );
+
+    // 소켓 오픈하기
+    bybitSocket.onopen = () => {
+      bybitSocket.send(`{"op": "subscribe", "args": ["publicTrade.BTCUSDT"]}`);
+    };
+
+    // 메시지 처리하기
+    bybitSocket.onmessage = (e) => {
+      // 실제 데이터는 e.data.data[0]
+      console.log(JSON.parse(e.data));
+      const data = JSON.parse(e.data);
+
+      // topic이 publicTrade.BTCUSDT일 경우만 작동
+      if (data.topic == "publicTrade.BTCUSDT") {
+        const tradeData = data.data[0];
+        usdtPrice.innerText = `$ ${tradeData.p}`;
+
+        // 표시하는 거래 개수 제한
+        if (tradeTbody.childElementCount > 10) {
+          tradeTbody.removeChild(tradeTbody.lastChild);
+        }
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+        <td class="text-left">${tradeData.p}</td>
+        <td>${tradeData.v}</td>
+        <td class="text-right">${tradeData.S}</td>
+        `;
+        tradeTbody.prepend(tr);
+      }
+    };
+  </script>
+</html>
