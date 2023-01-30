@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>메시지: <span id="message"></span></p>
+    </div>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      모달창 켜기
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">모달창</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">메시지</span>
+              <input
+                id="messageInput"
+                type="text"
+                class="form-control"
+                placeholder="입력하세요"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              취소
+            </button>
+            <button id="messageBtn" type="button" class="btn btn-primary">
+              입력
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 컨트롤 해야할 태그들
+    const myModal = new bootstrap.Modal(
+      document.getElementById("exampleModal")
+    );
+    const messageBtn = document.getElementById("messageBtn");
+    const message = document.getElementById("message");
+    const messageInput = document.getElementById("messageInput");
+
+    // 유효성 체크
+    const validCheck = () => {
+      // input에 메시지 없으면 경고 띄우기
+      if (messageInput.value == "") {
+        alert("메시지를 입력하세요.");
+        return false;
+      }
+      return true;
+    };
+
+    messageBtn.onclick = () => {
+      if (!validCheck()) {
+        return;
+      }
+
+      // 모달창 메시지 input에 입력
+      // 입력 버튼 누르면 부모 페이지 메시지에 출력
+      message.innerText = messageInput.value;
+      messageInput.value = "";
+
+      // 모달창 닫기
+      myModal.hide();
+    };
+  </script>
+</html>
