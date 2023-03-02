@@ -61,61 +61,30 @@
         cards.forEach((value, index) => {
           cardGroup.insertAdjacentHTML(
             "beforeend",
-            `<div class="col">
-      <div class="card m-3">
-        <img
-          src="${value.MAIN_IMG_THUMB}"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">
-            <a href="${value.HOMEPAGE_URL}" target="_blank">${value.MAIN_TITLE}</a>
-          </h5>
-          <p class="card-text">
-            ${value.TITLE}, ${value.SUBTITLE}
-          </p>
-          <p class="card-text">
-            <small class="text-muted">
-              ${value.CNTCT_TEL}
-              </small>
-          </p>
-        </div>
-      </div>
-    </div>`
+            /*html*/ `
+            <div class="col">
+              <div class="card m-3">
+                <img
+                  src="${value.MAIN_IMG_THUMB}"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href="${value.HOMEPAGE_URL}" target="_blank"
+                      >${value.MAIN_TITLE}</a
+                    >
+                  </h5>
+                  <p class="card-text">${value.TITLE}, ${value.SUBTITLE}</p>
+                  <p class="card-text">
+                    <small class="text-muted"> ${value.CNTCT_TEL} </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+            `
           );
         });
       });
-
-    // // const cards = [0, 0, 0, 0, 0, 0, 0];
-    // const cards = new Array(7).fill(0);
-
-    // const cardGroup = document.getElementById("cardGroup");
-
-    // cards.forEach((value, index) => {
-    //   cardGroup.insertAdjacentHTML(
-    //     "beforeend",
-    //     `<div class="col">
-    //       <div class="card m-3">
-    //         <img
-    //           src="${value.MAIN_IMG_THUMB}"
-    //           class="card-img-top"
-    //           alt="..."
-    //         />
-    //         <div class="card-body">
-    //           <h5 class="card-title">Card title ${index}</h5>
-    //           <p class="card-text">
-    //             This is a wider card with supporting text below as a natural
-    //             lead-in to additional content. This content is a little bit
-    //             longer.
-    //           </p>
-    //           <p class="card-text">
-    //             <small class="text-muted">Last updated 3 mins ago</small>
-    //           </p>
-    //         </div>
-    //       </div>
-    //     </div>`
-    //   );
-    // });
   </script>
 </html>
